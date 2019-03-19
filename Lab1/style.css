@@ -8,10 +8,13 @@ body {
     background-color: #f8f8f8;
 }
 
+main {
+    margin: 0 30px;
+}
+
 main > section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* grid-template-rows: 250px; */
     grid-column-gap: 20px;
     grid-row-gap: 20px;
 }
@@ -19,8 +22,51 @@ main > section {
 aside {
     grid-row: span 3;
     height: auto;
+    min-height: calc(100vh - 100px);
     background-color: #d03630;
     color: white;
+}
+
+header, footer {
+    background-color: white;
+}
+
+@media screen and (max-width: 992px) {
+    body {
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        grid-column-gap: 15x;
+        grid-row-gap: 15px;
+        margin: 20px;
+    }
+
+    main {
+        margin: 0;
+    }
+
+    aside {
+        grid-row: inherit;
+        height: auto;
+        min-height: inherit;
+        background-color: #d03630;
+        color: white;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    main > section {
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main > section {
+        grid-template-columns: repeat(1, 1fr);
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+    }
 }
 
 .card {
@@ -31,5 +77,4 @@ aside {
 
 .pizza {
     background-color: white;
-    height: 450px;
 }
