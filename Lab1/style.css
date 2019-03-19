@@ -1,9 +1,10 @@
 body {
     display: grid;
     grid-template-columns: 250px 1fr;
-    grid-template-rows: 100px auto 100px;
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
+    grid-template-rows: 70px auto 70px;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    margin: 30px;
 }
 
 aside {
@@ -12,5 +13,6 @@ aside {
 }
 
 header, aside, main, footer {
-    box-shadow: 0 5px 10px 0 #e6e6e6;
+    box-shadow: 0 0 12px 5px #e6e6e6;
+    padding: 20px;
 }
