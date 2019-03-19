@@ -18,7 +18,7 @@ main > section {
 
 aside {
     grid-row: span 3;
-    height: 100vh;
+    height: auto;
     background-color: #d03630;
     color: white;
 }
