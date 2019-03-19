@@ -5,14 +5,31 @@ body {
     grid-column-gap: 30px;
     grid-row-gap: 30px;
     margin: 30px;
+    background-color: #f8f8f8;
+}
+
+main > section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-rows: 250px; */
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
 }
 
 aside {
     grid-row: span 3;
     height: 100vh;
+    background-color: #d03630;
+    color: white;
 }
 
-header, aside, main, footer {
-    box-shadow: 0 0 12px 5px #e6e6e6;
+.card {
+    border-radius: 8px;
+    box-shadow: 0 0 10px 5px #e6e6e6;
     padding: 20px;
+}
+
+.pizza {
+    background-color: white;
+    height: 450px;
 }
