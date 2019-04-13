@@ -14,7 +14,21 @@ let info = getQuote()
 let quote = info.quote, author = info.character;
 console.log(quote, author);
 
-document.body.appendChild(canvas);
+function loadQuote() {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: "https://api.forismatic.com/api/1.0/",
+            jsonp: "jsonp",
+            dataType: "jsonp",
+            data: {
+                method: "getQuote",
+                lang: "ru",
+                format: "jsonp"
+            }
+        })
+        .done(resolve);
+    });
+}
 
 function addImage(sizeX, sizeY, offsetX, offsetY) {
     let img = new Image();
@@ -29,15 +43,6 @@ function addImage(sizeX, sizeY, offsetX, offsetY) {
 
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function getQuote() {
-    let quote = "";
-    $.get({
-        async: false,
-        url: "https://thesimpsonsquoteapi.glitch.me/quotes"
-    }).done(r => quote = r[0]);
-    return quote;
 }
 
 // let images = [];
