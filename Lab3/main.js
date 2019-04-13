@@ -15,11 +15,28 @@ addImage(splitX, splitY, 0, 0)
 
 
 function writeQuote(quote) {
-    console.log(quote);
     context.textAlign = 'center';
-    context.font = 'Bold 24px Arial';
+    context.textBaseline = "middle"; 
+    context.font = 'Bold 60px Arial';
     context.fillStyle = "white";
-    context.fillText(quote.quoteText, 500, 500, 1000);
+
+    let words = quote.quoteText.split(' ');
+    let lines = []
+    while (words.length > 0) {
+        let line = [];
+        while (context.measureText(line.join(' ')).width < canvas.width * 0.9 && words.length > 0) {
+            line.push(words.shift());
+        }
+
+        if (context.measureText(line.join(' ')).width >= canvas.width * 0.9)
+            words.unshift(line.pop());
+
+        lines.push(line);
+    }
+    let height = 500 - lines.length * 30 + 30;
+    lines.forEach((line, i) => {
+        context.fillText(line.join(' '), 500, height + i * 60);
+    });
 }
 
 function loadQuote() {
@@ -43,7 +60,6 @@ function addImage(sizeX, sizeY, offsetX, offsetY) {
         let img = new Image();
         img.crossOrigin = 'anonymous';
         img.onload = () => {
-            console.log(img.src);
             context.drawImage(img, offsetX, offsetY);
             context.fillStyle = "rgba(0, 0, 0, 0.5)";
             context.fillRect(offsetX, offsetY, sizeX, sizeY);
