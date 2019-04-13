@@ -10,6 +10,10 @@ addImage(canvas.width - splitX, splitY, splitX, 0);
 addImage(splitX, canvas.height - splitY, 0, splitY);
 addImage(canvas.width - splitX, canvas.height - splitY, splitX, splitY);
 
+let info = getQuote()
+let quote = info.quote, author = info.character;
+console.log(quote, author);
+
 document.body.appendChild(canvas);
 
 function addImage(sizeX, sizeY, offsetX, offsetY) {
@@ -27,14 +31,12 @@ function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function getRandomImage(collection, width, height) {
-    return ;
-}
-
 function getQuote() {
     let quote = "";
-    $.get("https://thesimpsonsquoteapi.glitch.me/quotes")
-    .done(data => quote = data[0].quote);
+    $.get({
+        async: false,
+        url: "https://thesimpsonsquoteapi.glitch.me/quotes"
+    }).done(r => quote = r[0]);
     return quote;
 }
 
