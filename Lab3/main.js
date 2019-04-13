@@ -31,15 +31,20 @@ function loadQuote() {
 }
 
 function addImage(sizeX, sizeY, offsetX, offsetY) {
+    return new Promise((resolve, reject) => {
     let img = new Image();
-    img.src = `https://source.unsplash.com/collection/1127163/${sizeX}x${sizeY}`;
     img.crossOrigin = 'anonymous';
     img.onload = () => { 
+            console.log(img.src);
         context.drawImage(img, offsetX, offsetY); 
         context.fillStyle = "rgba(0, 0, 0, 0.5)";
         context.fillRect(offsetX, offsetY, sizeX, sizeY);
-    };
+            resolve("OK");
+        }
+        img.src = `https://source.unsplash.com/collection/1127163/${sizeX}x${sizeY}`;
+    });
 }
+
 
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
