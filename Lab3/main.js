@@ -5,10 +5,14 @@ canvas.height = 1000;
 splitX = randomInt(25, 75) * 10;
 splitY = randomInt(25, 75) * 10;
 
-addImage(splitX, splitY, 0, 0);
-addImage(canvas.width - splitX, splitY, splitX, 0);
-addImage(splitX, canvas.height - splitY, 0, splitY);
-addImage(canvas.width - splitX, canvas.height - splitY, splitX, splitY);
+addImage(splitX, splitY, 0, 0)
+    .then(addImage(canvas.width - splitX, splitY, splitX, 0))
+    .then(addImage(splitX, canvas.height - splitY, 0, splitY))
+    .then(addImage(canvas.width - splitX, canvas.height - splitY, splitX, splitY))
+    .then(loadQuote)
+    .then(response => writeQuote(response))
+    .then(document.body.appendChild(canvas));
+
 
 function writeQuote(quote) {
     console.log(quote);
@@ -30,19 +34,19 @@ function loadQuote() {
                 format: "jsonp"
             }
         })
-        .done(resolve);
+            .done(resolve);
     });
 }
 
 function addImage(sizeX, sizeY, offsetX, offsetY) {
     return new Promise((resolve, reject) => {
-    let img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => { 
+        let img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => {
             console.log(img.src);
-        context.drawImage(img, offsetX, offsetY); 
-        context.fillStyle = "rgba(0, 0, 0, 0.5)";
-        context.fillRect(offsetX, offsetY, sizeX, sizeY);
+            context.drawImage(img, offsetX, offsetY);
+            context.fillStyle = "rgba(0, 0, 0, 0.5)";
+            context.fillRect(offsetX, offsetY, sizeX, sizeY);
             resolve("OK");
         }
         img.src = `https://source.unsplash.com/collection/1127163/${sizeX}x${sizeY}`;
