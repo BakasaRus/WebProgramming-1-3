@@ -14,7 +14,7 @@ document.body.appendChild(canvas);
 
 function addImage(sizeX, sizeY, offsetX, offsetY) {
     let img = new Image();
-    img.src = getRandomImage(1127163, sizeX, sizeY);
+    img.src = `https://source.unsplash.com/collection/1127163/${sizeX}x${sizeY}`;
     img.crossOrigin = 'anonymous';
     img.onload = () => context.drawImage(img, offsetX, offsetY);
 }
@@ -24,7 +24,7 @@ function randomInt(min, max) {
 }
 
 function getRandomImage(collection, width, height) {
-    return `https://source.unsplash.com/collection/${collection}/${width}x${height}`;
+    return ;
 }
 
 function getQuote() {
