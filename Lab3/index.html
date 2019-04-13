@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script>
-        $.ajax({
-            url: "https://api.unsplash.com//photos/random?client_id=86fae76b3bed787ddb8633d637862137c6aba016e422387916e7c2e88857304d&count=4"
-        }).done(data => console.log(data));
+        $.get("https://api.unsplash.com//photos/random?client_id=86fae76b3bed787ddb8633d637862137c6aba016e422387916e7c2e88857304d&count=4")
+        .done(data => console.log(data));
+
+        $.get("https://thesimpsonsquoteapi.glitch.me/quotes")
+        .done(data => console.log(data));
     </script>
 </head>
 <body>
