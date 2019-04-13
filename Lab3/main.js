@@ -16,7 +16,11 @@ function addImage(sizeX, sizeY, offsetX, offsetY) {
     let img = new Image();
     img.src = `https://source.unsplash.com/collection/1127163/${sizeX}x${sizeY}`;
     img.crossOrigin = 'anonymous';
-    img.onload = () => context.drawImage(img, offsetX, offsetY);
+    img.onload = () => { 
+        context.drawImage(img, offsetX, offsetY); 
+        context.fillStyle = "rgba(0, 0, 0, 0.5)";
+        context.fillRect(offsetX, offsetY, sizeX, sizeY);
+    };
 }
 
 function randomInt(min, max) {
