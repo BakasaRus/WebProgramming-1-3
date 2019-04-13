@@ -10,9 +10,13 @@ addImage(canvas.width - splitX, splitY, splitX, 0);
 addImage(splitX, canvas.height - splitY, 0, splitY);
 addImage(canvas.width - splitX, canvas.height - splitY, splitX, splitY);
 
-let info = getQuote()
-let quote = info.quote, author = info.character;
-console.log(quote, author);
+function writeQuote(quote) {
+    console.log(quote);
+    context.textAlign = 'center';
+    context.font = 'Bold 24px Arial';
+    context.fillStyle = "white";
+    context.fillText(quote.quoteText, 500, 500, 1000);
+}
 
 function loadQuote() {
     return new Promise((resolve, reject) => {
