@@ -2,20 +2,21 @@ let canvas = document.createElement("canvas");
 let context = canvas.getContext("2d");
 canvas.width = 1000;
 canvas.height = 1000;
-splitX = randomInt(3, 5) * 100;
-splitY = randomInt(3, 5) * 100;
+splitX = randomInt(25, 75) * 10;
+splitY = randomInt(25, 75) * 10;
 
 addImage(splitX, splitY, 0, 0);
 addImage(canvas.width - splitX, splitY, splitX, 0);
 addImage(splitX, canvas.height - splitY, 0, splitY);
 addImage(canvas.width - splitX, canvas.height - splitY, splitX, splitY);
 
+document.body.appendChild(canvas);
+
 function addImage(sizeX, sizeY, offsetX, offsetY) {
     let img = new Image();
     img.src = getRandomImage(1127163, sizeX, sizeY);
     img.crossOrigin = 'anonymous';
-    context.drawImage(img, offsetX, offsetY);
-    document.body.appendChild(img);
+    img.onload = () => context.drawImage(img, offsetX, offsetY);
 }
 
 function randomInt(min, max) {
