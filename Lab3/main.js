@@ -9,12 +9,21 @@ Promise.all([
     addImage(splitX, splitY, 0, 0),
     addImage(canvas.width - splitX, splitY, splitX, 0),
     addImage(splitX, canvas.height - splitY, 0, splitY),
-    addImage(canvas.width - splitX, canvas.height - splitY, splitX, splitY)
+    addImage(canvas.width - splitX, canvas.height - splitY, splitX, splitY),
+    loadQuote()
 ])
-    .then(loadQuote)
-    .then(response => writeQuote(response))
-    .then(document.body.appendChild(canvas));
+    .then(response => writeQuote(response[4]))
+    .then(document.body.appendChild(canvas))
+    .then(save);
 
+function save() {
+    var link = document.createElement("a");
+    link.innerHTML = "Скачать";
+    link.setAttribute('download', 'Collage.png');
+    link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+    document.body.appendChild(link);
+    link.click();
+}
 
 function writeQuote(quote) {
     context.textAlign = 'center';
@@ -74,8 +83,3 @@ function addImage(sizeX, sizeY, offsetX, offsetY) {
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
-
-// let images = [];
-// $.get("https://api.unsplash.com//photos/random?client_id=86fae76b3bed787ddb8633d637862137c6aba016e422387916e7c2e88857304d&count=4")
-// .done(data => images = data);
-

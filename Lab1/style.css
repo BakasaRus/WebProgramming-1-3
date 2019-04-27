@@ -35,7 +35,7 @@ header, footer {
     body {
         grid-template-columns: auto;
         grid-template-rows: auto;
-        grid-column-gap: 15x;
+        grid-column-gap: 15px;
         grid-row-gap: 15px;
         margin: 20px;
     }
